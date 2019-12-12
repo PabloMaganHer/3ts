@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - functions
+  - deploy
+  - $_FUNCTION_NAME
+  - --runtime=python37
+  - --region=europe-west1
+  - --source=./cloud_functions/$_FUNCTION_NAME
+  - --trigger-resource=$_BUCKET_NAME
+  - --trigger-event=google.storage.object.finalize
+logsBucket: 'gs://$_LOG_BUCKET/logs'
