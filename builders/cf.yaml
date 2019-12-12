@@ -1,12 +1,14 @@
 steps:
+- name: python
+  args: ["python","utils/replace_devpro.py","$_REPLACE","$_FUNCTION_NAME"]
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
   - functions
   - deploy
-  - $_FUNCTION_NAME
+  - ${_FUNCTION_NAME}_${_ENV}
   - --runtime=python37
   - --region=europe-west1
-  - --source=./cloud_functions/$_FUNCTION_NAME
+  - --source=./cloud_functions_2build/$_FUNCTION_NAME
   - --trigger-resource=$_BUCKET_NAME
   - --trigger-event=google.storage.object.finalize
 logsBucket: 'gs://$_LOG_BUCKET/logs'
