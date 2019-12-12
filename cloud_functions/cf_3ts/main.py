@@ -1,4 +1,4 @@
-def cf_3ts(event, context):
+def cf_3ts_develop(event, context):
     """Triggered by a change to a Cloud Storage bucket.
     Args:
          event (dict): Event payload.
